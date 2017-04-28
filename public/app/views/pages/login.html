@@ -1,0 +1,34 @@
+
+<section id="first-section">
+    <img class="register-top-img" src="assets/images/1.png" />
+    <form id="login-form" ng="main.doLogin(loginData)">
+        <label>И-мейл</label>
+        <input type="text" name="login-email" ng="main.loginData.email" />
+        <label>Парола</label>
+        <input type="password" name="login-password" ng="main.loginData.password" />
+        <input class="remember-checkbox" id="remember-checkbox" type="checkbox" name="remember" />
+        <span class="remember-me">Запомни ме</span>
+        <input id="form-login" type="submit" name="register-password" value="Вход" />
+
+         <div class="jumbotron text-center" ng-show="main.loading">
+            <span class="spinner"><i class="fa fa-spinner fa-4x" aria-hidden="true"></i></span>
+            <p>Зареждане...</p>
+        </div>
+
+        <div class="row show-hide-message" ng-show="main.successMsg">
+            <div class="alert alert-success"> {{ main.successMsg }} </div>
+        </div>
+
+        <div class="row show-hide-message" ng-show="main.errorMsg">
+            <div class="alert alert-danger"> {{ main.errorMsg }} </div>
+        </div>
+        
+    </form>
+</section>
+<section id="login-section">
+    <div class="login-form">
+        <img class="register-top-img" src="assets/images/2.png" />
+        <a id="facebook-login" href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Facebook</a>
+        <a id="google-login" href="#"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Google</a>
+    </div>
+</section>

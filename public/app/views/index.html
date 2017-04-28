@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <title>Piggy Bank</title>
+    <link rel="icon" type="img/ico" href="assets/img/favicon.ico">
+    <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <script src="assets/js/angular.js" type="text/javascript"></script>
+    <script src="assets/js/angular-route.js" type="text/javascript"></script>
+    <script src="assets/js/angular-animate.js" type="text/javascript"></script>
+    <script src="app/app.js"></script>
+    <script src="app/routes.js"></script>
+    <script src="app/controllers/userCtrl.js"></script>
+    <script src="app/controllers/mainCtrl.js"></script>
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/authServices.js"></script>
+</head>
+<body ng-app="userApp" ng-controller="mainCtrl as main">
+
+    <!-- START HEADER -->
+    <div id="wrapper">
+        <header id="main-header">
+            <h1 id="company-logo">
+                <a href="index.html">
+                    <img src="assets/images/piggy_bank_logo.png" />
+                    <span class="first-logo-title">Piggy</span><span class="second-logo-title">Bank</span>
+                </a>
+            </h1>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i>Начало</a></li>
+                    <li><a href="#"><i class="fa fa-money fa-lg" aria-hidden="true"></i>Валутен курс</a></li>
+                    <li><a href="#"><i class="fa fa-calculator fa-lg" aria-hidden="true"></i>Калкулатори</a></li>
+                    <li class="more-padding-right"><a href="#"><i class="fa fa-book fa-lg" aria-hidden="true"></i>Блог</a></li>
+                    <li><a href="/login"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>Вход</a></li>
+                    <li><a href="/register"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>Регистрация</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div ng-view></div>
+      
+    </div>
+
+   
+     <!-- END HEADER -->
+
+
+<script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>
