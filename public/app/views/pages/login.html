@@ -1,11 +1,11 @@
 
 <section id="first-section">
     <img class="register-top-img" src="assets/images/1.png" />
-    <form id="login-form" ng="main.doLogin(loginData)">
+    <form id="login-form" ng-submit="main.doLogin(loginData)">
         <label>И-мейл</label>
-        <input type="text" name="login-email" ng="main.loginData.email" />
+        <input type="text" name="login-email" ng-model="main.loginData.email" />
         <label>Парола</label>
-        <input type="password" name="login-password" ng="main.loginData.password" />
+        <input type="password" name="login-password" ng-model="main.loginData.password" />
         <input class="remember-checkbox" id="remember-checkbox" type="checkbox" name="remember" />
         <span class="remember-me">Запомни ме</span>
         <input id="form-login" type="submit" name="register-password" value="Вход" />

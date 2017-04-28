@@ -15,7 +15,7 @@ angular.module('mainController', ['authServices'])
                 app.successMsg = data.data.message;
                 $timeout(function() {
                     // Redirect to home page or login page
-                    $location.path('/home');
+                    $location.path('/afterLogin');
                 }, 2000)
                 
             } else {
