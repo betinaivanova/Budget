@@ -1,4 +1,7 @@
 var User = require('../models/user');
+var jwt = require('jsonwebtoken');
+var secret = 'test';
+
 module.exports = function(router) {
     //http://localhost:8080/api/users
     //USER REGISTRATION ROUTE
@@ -36,12 +39,13 @@ module.exports = function(router) {
                 if(req.body.password) {
                     var validPassword = user.comparePassword(req.body.password);
                 } else {
-                    res.json( { success : false, message : 'No password provided' });
+                    res.json( { success : false, message : 'Не е въведена парола!' });
                 }
                 if(!validPassword) {
-                    res.json( { success : false, message : 'Could not authenticate password' });
+                    res.json( { success : false, message : 'Невалидна парола' });
                 } else {
-                    res.json( { success : true, message : 'User authenticated' });
+                    var token = jwt.sign( { email : user.email }, secret, { expiresIn: '24h'});
+                    res.json( { success : true, message : 'Браво, ти успя!', token : token });
                 }
             }
         });
@@ -49,3 +53,5 @@ module.exports = function(router) {
     
     return router;
 }
+
+

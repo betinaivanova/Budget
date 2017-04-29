@@ -93,7 +93,7 @@ a:hover {
 }
 
 #main-nav > ul > li.more-padding-right {
-	padding-right: 150px;
+	padding-right: 50px;
 }
 
 #main-nav > ul > li > a > i {
@@ -136,10 +136,10 @@ a:hover {
 }
 
 .register-top-img {
+	padding-top: 10%;
 	display: block;
 	position: relative;
 	left: 51%;
-	top: -3%;
 }
 
 #registration-form {

@@ -16,6 +16,10 @@ angular.module('appRoutes', ['ngRoute'])
     .when('/login', {
         templateUrl : 'app/views/pages/login.html'
     })
+
+     .when('/logout', {
+        templateUrl : 'app/views/pages/logout.html'
+    })
     // .otherwise({ redirectTo : '/'} );
 
     $locationProvider.html5Mode({
