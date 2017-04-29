@@ -37,9 +37,10 @@
                     <li><a href="#"><i class="fa fa-money fa-lg" aria-hidden="true"></i>Валутен курс</a></li>
                     <li><a href="#"><i class="fa fa-calculator fa-lg" aria-hidden="true"></i>Калкулатори</a></li>
                     <li class="more-padding-right"><a href="#"><i class="fa fa-book fa-lg" aria-hidden="true"></i>Блог</a></li>
-                    <li><a href="/login"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>Вход</a></li>
-                    <li><a ng-click = "main.logout();" href="/logout"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Изход</a></li>
-                    <li><a href="/register"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>Регистрация</a></li>
+                    <li ng-show="!main.isLoggedIn"><a href="/login"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>Вход</a></li>
+                    <li ng-show="main.isLoggedIn" ><a ng-click = "main.logout();" href="/logout"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Изход</a></li>
+                    <li ng-show="!main.isLoggedIn"><a href="/register"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>Регистрация</a></li>
+                    <li ng-show="main.isLoggedIn"><a href="#"><i class="fa fa-smile-o" aria-hidden="true"></i></i>Здравей, {{ main.email }} </a></li>
                 </ul>
             </nav>
         </header>

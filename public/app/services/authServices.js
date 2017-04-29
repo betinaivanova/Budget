@@ -21,6 +21,20 @@ angular.module('authServices',[])
         }
     };
 
+    // Auth.facebook(token);
+    authFactory.facebook = function(token) {
+        AuthToken.setToken(token);
+    };
+
+    // Auth.getUser();
+    authFactory.getUser = function() {
+        if(AuthToken.getToken()) {
+            return $http.post('api/me');
+        } else {
+            $q.reject ( { message : 'User has no token' });
+        }
+    };
+
     // Auth.logout();
 
     authFactory.logout = function() {
@@ -41,11 +55,24 @@ angular.module('authServices',[])
         }
     };
 
-  
-
     authTokenFactory.getToken = function() {
         return $window.localStorage.getItem('token');
     };
 
     return authTokenFactory;
+})
+
+.factory('AuthInterceptors', function(AuthToken) {
+    var authInterceptorsFactory = {};
+
+    authInterceptorsFactory.request = function(config){
+
+        var token = AuthToken.getToken();
+
+        if(token) config.headers['x-access-token'] = token;
+        
+        return config;
+    };
+    
+    return authInterceptorsFactory;
 });

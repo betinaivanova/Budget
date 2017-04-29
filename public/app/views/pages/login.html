@@ -28,7 +28,10 @@
 <section id="login-section">
     <div class="login-form">
         <img class="register-top-img" src="assets/images/2.png" />
-        <a id="facebook-login" href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Facebook</a>
+        <a id="facebook-login" href="/auth/facebook" target="_blank"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Facebook</a>
+        <div class="row show-hide-message" ng-show="facebook.errorMsg">
+            <div class="alert alert-danger"> {{ facebook.errorMsg }} </div>
+        </div>
         <a id="google-login" href="#"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Google</a>
     </div>
 </section>

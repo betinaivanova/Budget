@@ -1,13 +1,22 @@
 angular.module('mainController', ['authServices'])
 
-.controller('mainCtrl', function(Auth, $timeout, $location) {
+.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope) {
     var app = this;
 
-    if(Auth.isLoggedIn()) {
-        console.log('Succes');
-    } else {
-        console.log('Fail');
-    }
+    $rootScope.$on('$routeChangeStart', function() {
+        
+        if(Auth.isLoggedIn()) {
+            app.isLoggedIn = true;
+            Auth.getUser().then(function(data) {
+                app.email = data.data.email;
+            });
+        } else {
+            app.isLoggedIn = false;
+            app.email = '';
+        }
+
+        if($location.hash() == '_=_') $location.hash(null);
+    });
 
     this.doLogin = function(loginData) {
         app.loading = true;
@@ -21,7 +30,9 @@ angular.module('mainController', ['authServices'])
                 app.successMsg = data.data.message;
                 $timeout(function() {
                     // Redirect to home page or login page
-                    $location.path('/afterLogin');
+                    $location.path('/');
+                    app.loginData = '';
+                    app.successMsg = '';
                 }, 2000)
                 
             } else {
