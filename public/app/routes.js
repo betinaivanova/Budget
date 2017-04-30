@@ -21,6 +21,12 @@ angular.module('appRoutes', ['ngRoute'])
         templateUrl : 'app/views/pages/logout.html'
     })
 
+    .when('/budget', {
+        templateUrl : 'app/views/pages/budget-list.html',
+        controller: 'BudgetListCtrl',
+        access: { requiredLogin: true }
+    })
+
     .when('/facebook/:token', {
         templateUrl : 'app/views/pages/social/social.html',
         controller : 'facebookCtrl',
@@ -32,7 +38,7 @@ angular.module('appRoutes', ['ngRoute'])
         controller : 'facebookCtrl',
         controllerAs : 'facebook'
     })
-    // .otherwise({ redirectTo : '/'} );
+    .otherwise({ redirectTo : '/'} );
 
     $locationProvider.html5Mode({
         enabled: true,

@@ -8,6 +8,11 @@ var UserSchema = new Schema({
     password : {type : String, required : true}
 });
 
+var Budget = new Schema({
+    user_id : { type : Schema.ObjectId, ref : 'User', required : true},
+    name : { type : String, required : true}
+})
+
 //middleware
 UserSchema.pre('save', function(next) {
     var user = this;
@@ -23,5 +28,6 @@ UserSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-
+var budgetModel = mongoose.model('Budget', Budget);
 module.exports = mongoose.model('User', UserSchema);
+exports.budgetModel = budgetModel;

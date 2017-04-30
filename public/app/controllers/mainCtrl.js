@@ -1,6 +1,6 @@
 angular.module('mainController', ['authServices'])
 
-.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope) {
+.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope, $window) {
     var app = this;
 
     $rootScope.$on('$routeChangeStart', function() {
@@ -18,6 +18,12 @@ angular.module('mainController', ['authServices'])
         if($location.hash() == '_=_') $location.hash(null);
     });
 
+    this.facebook = function() {
+        // console.log($window.location.host); localhost:8080
+        // console.log($window.location.protocol); http:
+        $window.location = $window.location.protocol + '//' + $window.location.host + '/auth/facebook';
+    }
+
     this.doLogin = function(loginData) {
         app.loading = true;
         app.errorMsg = false;
@@ -30,7 +36,7 @@ angular.module('mainController', ['authServices'])
                 app.successMsg = data.data.message;
                 $timeout(function() {
                     // Redirect to home page or login page
-                    $location.path('/');
+                    $location.path('/budget');
                     app.loginData = '';
                     app.successMsg = '';
                 }, 2000)
@@ -48,7 +54,7 @@ angular.module('mainController', ['authServices'])
         $location.path('/logout');
         $timeout(function() {
             $location.path('/');
-        }, 2000);
+        }, 3000);
     };
 });
 
