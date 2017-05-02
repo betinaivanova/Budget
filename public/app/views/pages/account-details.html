@@ -1,0 +1,64 @@
+<div class="container">
+
+  <h1>Бюджет</h1>
+
+  <p class="lead">Текущ баланс: </p>
+ 
+  <form name="addRecordForm">
+    <div class="row">
+      <div class="col-xs-2">
+        <input type="text" class="form-control" placeholder="Сума" ng-model="" required/>
+      </div>
+      <div class="col-xs-2">
+        <select class="form-control" ng-model="record.type">
+          <option value="0">Разходи</option>
+          <option value="1">Приходи</option>
+        </select>
+      </div>
+      <div class="col-xs-2">
+        <select class="form-control" ng-model="record.category">
+          <option value="0">бонуси и овъртайм</option>
+          <option value="1">интернет</option>
+          <option value="2">телевизия</option>
+          <option value="3">автомобилна застраховка</option>
+          <option value="4">супермаркет</option>
+          <option value="5">електричество</option>
+        </select>
+      </div>
+      <div class="col-xs-4">
+        <input type="text" class="form-control" placeholder="Описание" ng-model="">
+      </div>
+      <div class="col-xs-2">
+        <button type="submit" class="btn btn-primary" ng-click="">Добави</button>
+      </div>
+    </div>
+  </form>
+  
+  <h1>History</h1>
+
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th>Категория</th>
+        <th>Описание</th>
+        <th>Дата</th>
+        <th>Сума</th>
+        <th>Изтрий</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><button type="submit" class="btn btn-danger btn-xs" ng-click="">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <canvas id="canvas" height="450" width="450"></canvas>
+  
+</div>

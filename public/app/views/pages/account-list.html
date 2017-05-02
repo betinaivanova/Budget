@@ -29,9 +29,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="account in accounts">
-				<td></td>
-				<td></td>
-				<td><a href=""><button type="submit" class="btn btn-success btn-xs">Детайли</button></a> <button type="submit" class="btn btn-danger btn-xs" ng-click="">Изтрий</button></td>
+				<td>{{account.name}}</td>
+				<td>{{account.balance}}</td>
+				<td><a href="/details"><button type="submit" class="btn btn-success btn-xs">Детайли</button></a> <button type="submit" class="btn btn-danger btn-xs" ng-click="">Изтрий</button></td>
 			</tr>
 	    </tbody>
   	</table>

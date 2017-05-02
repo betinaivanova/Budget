@@ -27,6 +27,11 @@ angular.module('appRoutes', ['ngRoute'])
         controllerAs : 'account'
     })
 
+     .when('/details', {
+        templateUrl : 'app/views/pages/account-details.html',
+      
+    })
+
     .when('/facebook/:token', {
         templateUrl : 'app/views/pages/social/social.html',
         controller : 'facebookCtrl',

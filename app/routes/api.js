@@ -33,7 +33,7 @@ module.exports = function(router) {
         var account = new Account();
         account.name = req.body.name;
         account.currency = req.body.currency;
-        console.log(req.body);
+        console.log(req.session);
         if(req.body.name == '' || req.body.name == null || req.body.currency == '' || req.body.currency == null) {
             res.send('Уверете се, че всички полета са попълнени');
         } else {
@@ -45,6 +45,16 @@ module.exports = function(router) {
                 }
             })
         }
+    });
+     router.get('/accounts', function(req,res) {
+        Account.find(function(err, accounts) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.json(accounts);
+                }
+            })
+        
     });
 
     //http://localhost:8080/api/authenticate
