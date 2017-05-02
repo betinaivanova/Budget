@@ -21,10 +21,10 @@ angular.module('appRoutes', ['ngRoute'])
         templateUrl : 'app/views/pages/logout.html'
     })
 
-    .when('/budget', {
-        templateUrl : 'app/views/pages/budget-list.html',
-        controller: 'BudgetListCtrl',
-        access: { requiredLogin: true }
+    .when('/account', {
+        templateUrl : 'app/views/pages/account-list.html',
+        controller: 'accountCtrl',
+        controllerAs : 'account'
     })
 
     .when('/facebook/:token', {

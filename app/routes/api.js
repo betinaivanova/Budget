@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Account = require('../models/account');
 var jwt = require('jsonwebtoken');
 var secret = 'test';
 
@@ -24,6 +25,25 @@ module.exports = function(router) {
                     res.json({ success : true, message : 'Регистрирахте се успешно!' });
                 }
             });
+        }
+    });
+
+    //http://localhost:8080/api/accounts
+    router.post('/accounts', function(req,res) {
+        var account = new Account();
+        account.name = req.body.name;
+        account.currency = req.body.currency;
+        console.log(req.body);
+        if(req.body.name == '' || req.body.name == null || req.body.currency == '' || req.body.currency == null) {
+            res.send('Уверете се, че всички полета са попълнени');
+        } else {
+            account.save(function(err) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.send('account created');
+                }
+            })
         }
     });
 

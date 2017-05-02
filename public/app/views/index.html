@@ -17,9 +17,10 @@
     <script src="app/routes.js"></script>
     <script src="app/controllers/userCtrl.js"></script>
     <script src="app/controllers/mainCtrl.js"></script>
-    <script src="app/controllers/budgetCtrl.js"></script>
+    <script src="app/controllers/accountCtrl.js"></script>
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
+    <script src="app/services/accountServices.js"></script>
 </head>
 <body ng-app="userApp" ng-controller="mainCtrl as main">
 
@@ -43,7 +44,7 @@
                     <li ng-show="!main.isLoggedIn"><a href="/register"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>Регистрация</a></li>
                     <li class="dropdown" ng-show="main.isLoggedIn"><a href="#"><i class="fa fa-smile-o" aria-hidden="true"></i></i>Здравей, {{ main.email }} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-content">
-                            <li><a href="/budget">Бюджети</a></li>
+                            <li><a href="/account">Бюджети</a></li>
                             <li><a href="#">Категории</a></li>
                             <li><a href="#">Сравнителна графика</a></li>
                         </ul>

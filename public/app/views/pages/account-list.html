@@ -1,0 +1,40 @@
+<div class="container">
+
+	<h1>Бюджети</h1>
+	<form ng-submit="account.addAccount(addData);" name="addAccountForm">
+	    <div class="row">
+	      <div class="col-xs-3">
+	        <input type="text" class="form-control" placeholder="Име на бюджет" ng-model="account.addData.name" required/>
+	      </div>
+	      <div class="col-xs-2">
+	        <select class="form-control" ng-model="account.addData.currency" required>
+	          <option>$</option>
+	          <option>€</option>
+	          <option>£</option>
+	        </select>
+	      </div>
+	      <div class="col-xs-2">
+	        <button type="submit" class="btn btn-primary" ng-click="addAccount(account)">Добави</button>
+	      </div>
+	    </div>
+	</form>
+
+	<table class="table table-condensed table-hover">
+	    <thead>
+			<tr>
+				<th>Име на бюджет</th>
+				<th>Баланс</th>
+				<th>Детайли</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="account in accounts">
+				<td></td>
+				<td></td>
+				<td><a href=""><button type="submit" class="btn btn-success btn-xs">Детайли</button></a> <button type="submit" class="btn btn-danger btn-xs" ng-click="">Изтрий</button></td>
+			</tr>
+	    </tbody>
+  	</table>
+
+  	
+</div>
