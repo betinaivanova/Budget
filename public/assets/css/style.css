@@ -46,6 +46,10 @@ a:hover {
 
 /*** START INDEX.HTML ***/
 
+.view {
+	margin-top: 50px;
+}
+
 #wrapper {
 	margin: 0 auto;
 	max-width: 1170px;
@@ -88,7 +92,7 @@ a:hover {
 }
 
 #main-nav > ul > li {
-	padding: 20px;
+	padding: 15px;
 	display: inline-block;
 }
 

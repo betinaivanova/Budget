@@ -1,6 +1,11 @@
 var User = require('../models/user');
 var Account = require('../models/account');
+var Budget = require('../models/budget');
 var jwt = require('jsonwebtoken');
+var passport = require('passport');
+var passportSession = require('passport-session');
+var expressSession = require('express-session');
+var cookieParser = require('cookie-parser');
 var secret = 'test';
 
 module.exports = function(router) {
@@ -31,9 +36,10 @@ module.exports = function(router) {
     //http://localhost:8080/api/accounts
     router.post('/accounts', function(req,res) {
         var account = new Account();
+        // account.user_id = req.session;
+        console.log(req.session);
         account.name = req.body.name;
         account.currency = req.body.currency;
-        console.log(req.session);
         if(req.body.name == '' || req.body.name == null || req.body.currency == '' || req.body.currency == null) {
             res.send('Уверете се, че всички полета са попълнени');
         } else {
@@ -57,6 +63,50 @@ module.exports = function(router) {
         
     });
 
+    router.put('/accounts/:accountId', function(req,res) {
+        var accountId = req.params.accountId;
+        Account.remove({ _id : accountId }, function(err,res) {
+            if(err) {
+                res.send(err);
+            } else {
+                // console.log(res);
+            }
+        })
+    });
+
+     router.post('/details', function(req,res) {
+        var budget = new Budget();
+    
+        budget.category =  req.body.category;
+        budget.amount =  req.body.amount;
+        budget.date =  Date.now();
+        budget.is_expense =  req.body.is_expense;
+        budget.description = req.body.description;
+    
+        if(req.body.amount == '' || req.body.amount == null || req.body.category == '' || req.body.category == null || req.body.description == '' || req.body.description == null) {
+            res.send('Уверете се, че всички полета са попълнени');
+        } else {
+            budget.save(function(err) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.send('account created');
+                }
+            })
+        }
+    });
+
+    router.get('/details', function(req,res) {
+        Budget.find(function(err, budgets) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.json(budgets);
+                }
+            })
+        
+    });
+
     //http://localhost:8080/api/authenticate
     //USER LOGIN ROUTE
     router.post('/authenticate', function(req,res) {
@@ -74,6 +124,7 @@ module.exports = function(router) {
                 if(!validPassword) {
                     res.json( { success : false, message : 'Невалидна парола' });
                 } else {
+                    req.session.user = user;
                     var token = jwt.sign( { email : user.email }, secret, { expiresIn: '24h'});
                     res.json( { success : true, message : 'Браво, ти успя!', token : token });
                 }

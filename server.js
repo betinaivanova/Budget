@@ -9,6 +9,9 @@ var router = express.Router();
 var appRoutes = require('./app/routes/api')(router);
 var path = require('path');
 var passport = require('passport');
+var passportSession = require('passport-session');
+var expressSession = require('express-session');
+var cookieParser = require('cookie-parser');
 var social = require('./app/passport/passport')(app, passport);
 
 
@@ -16,6 +19,9 @@ var social = require('./app/passport/passport')(app, passport);
 app.use(morgan('dev'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(passport.session());
+app.use(cookieParser());
+app.use(expressSession({ secret: 'kjdasbdlas83k54fs5d', resave: false, saveUninitialized: true }));
 app.use(express.static(__dirname + '/public'));
 app.use('/api',appRoutes);
 

@@ -29,6 +29,13 @@ angular.module('appRoutes', ['ngRoute'])
 
      .when('/details', {
         templateUrl : 'app/views/pages/account-details.html',
+        controller: 'budgetCtrl',
+        controllerAs : 'budget'
+      
+    })
+
+    .when('/category', {
+        templateUrl : 'app/views/pages/category.html',
       
     })
 

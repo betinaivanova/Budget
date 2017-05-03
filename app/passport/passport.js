@@ -18,12 +18,13 @@ module.exports = function(app, passport) {
 
     passport.serializeUser(function(user, done) {
         token = jwt.sign( { email : user.email }, secret, { expiresIn: '24h'});
-        done(null, user.id);
+        var sessionUser = { _id: user._id, email: user.email };
+        done(null, user.id, sessionUser);
     });
 
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
-            done(err, user);
+            done(err, user, sessionUser);
         });
     });
 

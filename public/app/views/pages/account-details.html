@@ -4,19 +4,19 @@
 
   <p class="lead">Текущ баланс: </p>
  
-  <form name="addRecordForm">
+  <form ng-submit="budget.createBudget(addData);"  name="addRecordForm">
     <div class="row">
       <div class="col-xs-2">
-        <input type="text" class="form-control" placeholder="Сума" ng-model="" required/>
+        <input type="text" class="form-control" placeholder="Сума" ng-model="budget.addData.amount"  required/>
       </div>
       <div class="col-xs-2">
-        <select class="form-control" ng-model="record.type">
+        <select class="form-control" ng-model="budget.addData.is_expense" >
           <option value="0">Разходи</option>
           <option value="1">Приходи</option>
         </select>
       </div>
       <div class="col-xs-2">
-        <select class="form-control" ng-model="record.category">
+        <select class="form-control" ng-model="budget.addData.category"  >
           <option value="0">бонуси и овъртайм</option>
           <option value="1">интернет</option>
           <option value="2">телевизия</option>
@@ -26,15 +26,15 @@
         </select>
       </div>
       <div class="col-xs-4">
-        <input type="text" class="form-control" placeholder="Описание" ng-model="">
+        <input type="text" class="form-control" placeholder="Описание" ng-model="budget.addData.description"  >
       </div>
       <div class="col-xs-2">
-        <button type="submit" class="btn btn-primary" ng-click="">Добави</button>
+        <button type="submit" class="btn btn-primary" ng-click="createBudget(budget)">Добави</button>
       </div>
     </div>
   </form>
   
-  <h1>History</h1>
+  <h1>История на бюджетите</h1>
 
   <table class="table table-condensed table-hover">
     <thead>
@@ -47,12 +47,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><button type="submit" class="btn btn-danger btn-xs" ng-click="">Delete</button></td>
+      <tr ng-repeat="budget in budgets" data-account-id="{{ budget._id }}">
+        <td> {{ budget.category }}</td>
+        <td> {{ budget.description }} </td>
+        <td> {{ budget.date | date : 'medium' }} </td>
+        <td> {{ budget.amount }} </td>
+        <td><button type="submit" class="btn btn-danger btn-xs" ng-click="deleteBudget($event);">Изтрий</button></td>
       </tr>
     </tbody>
   </table>

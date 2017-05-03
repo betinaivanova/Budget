@@ -28,10 +28,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="account in accounts">
+			<tr ng-repeat="account in accounts" data-account-id="{{ account._id }}">
 				<td>{{account.name}}</td>
 				<td>{{account.balance}}</td>
-				<td><a href="/details"><button type="submit" class="btn btn-success btn-xs">Детайли</button></a> <button type="submit" class="btn btn-danger btn-xs" ng-click="">Изтрий</button></td>
+				<td><a href="/details"><button type="submit" class="btn btn-success btn-xs">Детайли</button></a> <button type="submit" class="btn btn-danger btn-xs" ng-click="deleteAccount($event);">Изтрий</button></td>
 			</tr>
 	    </tbody>
   	</table>

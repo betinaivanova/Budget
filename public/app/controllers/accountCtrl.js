@@ -6,15 +6,19 @@ angular.module('accountControllers', [])
         })
     var app = this;
     app.addAccount = function(addData) {
-        console.log('form submited');
-        console.log(this.addData);
         $http.post('/api/accounts', this.addData).then(function(res) {
-            console.log(res);
         $http.get('/api/accounts').then(function (res){
             $scope.accounts = res.data;
-        })
+            })
         });
-
-
     }
+
+    app.deleteAcc = function() {
+        
+    }
+    $scope.deleteAccount = function($event) {
+            var accountId = $($event.currentTarget).parent().parent().attr('data-account-id');
+            $http.put('/api/accounts/' + accountId);
+            $($event.currentTarget).parent().parent().remove();
+        }
 })
