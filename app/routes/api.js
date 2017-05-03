@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var Account = require('../models/account');
 var Budget = require('../models/budget');
+var Category= require('../models/category');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var passportSession = require('passport-session');
@@ -48,6 +49,22 @@ module.exports = function(router) {
                     res.send(err);
                 } else {
                     res.send('account created');
+                }
+            })
+        }
+    });
+
+     router.post('/categories', function(req,res) {
+        var category = new Category();
+        category.name = req.body.name;
+        if(req.body.name == '' || req.body.name == null) {
+            res.send('Уверете се, че всички полета са попълнени');
+        } else {
+            category.save(function(err) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.send('category created');
                 }
             })
         }

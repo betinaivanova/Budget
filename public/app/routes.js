@@ -36,6 +36,8 @@ angular.module('appRoutes', ['ngRoute'])
 
     .when('/category', {
         templateUrl : 'app/views/pages/category.html',
+        controller: 'categoryCtrl',
+        controllerAs : 'category'
       
     })
 

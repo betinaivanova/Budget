@@ -1,12 +1,12 @@
 <div class="container">
 	<h1>Категории</h1>
-	<form name="addCategoryForm">
+	<form ng-submit="category.addCategory(addData);" name="addCategoryForm">
 	    <div class="row">
 	      <div class="col-xs-3">
-	        <input type="text" class="form-control" placeholder="Category Name" ng-model="" required/>
+	        <input type="text" class="form-control" placeholder="" ng-model="category.addData.name" required/>
 	      </div>
 	      <div class="col-xs-2">
-	        <button type="submit" class="btn btn-primary" ng-click="">Добави</button>
+	        <button type="submit" class="btn btn-primary" ng-click="addCategory(category)">Добави</button>
 	      </div>
 	    </div>
 	</form>
@@ -19,8 +19,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="">
-				<td></td>
+			<tr ng-repeat="category in categories">
+				<td> {{ category.name }} </td>
 				<td><button type="submit" class="btn btn-danger btn-xs" ng-click="">Изтрий</button></td>
 			</tr>
 	    </tbody>
