@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+    <h2 class="text-center">Валутни курсове</h2>
+		<div class="table-responsive">          
+  <table  class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Банки / Обменни бюра</th>
+        <th>USD Купува</th>
+        <th>USD Продава</th>
+        <th>EUR Купува</th>
+        <th>EUR Продава</th>
+        <th>CHF Купува</th>
+        <th>CHF Продава</th>
+        <th>GBP Купува</th>
+        <th>GBP Продава</th>
+      </tr>
+    </thead>
+    <tbody ng-controller="apiCtrl" >
+      <tr ng-repeat"(key, value) in currencies">
+        <td>{{key}}</td>
+        <!--<td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>-->
+      </tr>
+    </tbody>
+  </table>
+  </div>
+	</div>
+</div>

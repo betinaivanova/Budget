@@ -41,6 +41,18 @@ angular.module('appRoutes', ['ngRoute'])
       
     })
 
+    .when('/calculator', {
+        templateUrl : 'app/views/pages/calculator.html',
+        controller: 'calculatorCtrl',
+      
+    })
+
+    .when('/currency', {
+        templateUrl : 'app/views/pages/currency.html',
+        controller: 'apiCtrl',
+      
+    })
+
     .when('/facebook/:token', {
         templateUrl : 'app/views/pages/social/social.html',
         controller : 'facebookCtrl',

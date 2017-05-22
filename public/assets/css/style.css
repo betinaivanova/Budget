@@ -44,6 +44,20 @@ a:hover {
 	color: #000;
 }
 
+.hideByDefault {
+	display: none;
+}
+
+.all-btn {
+	background-color: #a0304c;
+	color: #F2F1E6;
+}
+
+.all-btn:hover {
+	background-color: #C05163;
+	color: #F2F1E6;
+}
+
 /*** START INDEX.HTML ***/
 
 .view {
@@ -92,7 +106,7 @@ a:hover {
 }
 
 #main-nav > ul > li {
-	padding: 15px;
+	padding: 10px;
 	display: inline-block;
 }
 
@@ -244,6 +258,7 @@ a:hover {
 	background-color: #4d4d4d;
 }
 
+
 /* NGANIMATE
 ====================== */
 
@@ -355,4 +370,17 @@ a:hover {
 }
 
 /*** END LOGIN.HTML ***/
+
+
+/*** START CALCULATOR.HTML ***/
+
+#calculator-title {
+	display: inline-block;
+    text-align: center;
+    margin-bottom: 50px;
+	font-size: 2em;
+}
+
+
+/*** END CALCULATOR.HTML
 

@@ -1,0 +1,86 @@
+
+<form id="calculator-form" class="form-horizontal" ng-app="">
+<fieldset>
+
+<!-- Form Name -->
+<legend id="calculator-title">Каква максимална лихва мога да си позволя да плащам</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="income">Нетен месечен доход (BGN)</label>  
+  <div class="col-md-4">
+  <input ng-model="income" id="income" name="income" type="text" placeholder="0" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="monthly">Дължими месечни плащания (BGN)</label>  
+  <div class="col-md-4">
+  <input ng-model="monthly" id="monthly-payments" name="monthly" type="text" placeholder="0" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="payments">Други дължими плащания (BGN)</label>  
+  <div class="col-md-4">
+  <input ng-model="payments" id="payments" name="payments" type="text" placeholder="0" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="credit">Колко можете да отделите за вноска по кредита</label>
+  <div class="col-md-4">
+    <select ng-model="credit.levels" ng-options="obj.value as obj.label for obj in credit.percentArr" id="credit" name="credit" class="form-control">
+
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="price">Цена на имота (BGN)</label>  
+  <div class="col-md-4">
+  <input ng-model="price" id="price" name="price" type="text" placeholder="0" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="period">Срок на кредита (в години)</label>  
+  <div class="col-md-4">
+  <input ng-model="period" id="period" name="period" type="text" placeholder="0" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="amount">Размер на самоучастието (BGN)</label>  
+  <div class="col-md-4">
+  <input ng-model="amount" id="amount" name="amount" type="text" placeholder="0" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <button ng-click = "calculate()" id="submit" name="submit" class="btn all-btn">Изчислете</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+<p class="hideByDefault">{{myvalue}}</p>
+<!--<p ng-show="myvalue" class="ng-cloak">Размер на кредита (BGN): {{sum}}</p>-->
+<p ng-show="myvalue" class="ng-cloak">Приблизителна месечна вноска (BGN): {{amountCredit}}</p>
+
+

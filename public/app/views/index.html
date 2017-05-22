@@ -21,13 +21,15 @@
     <script src="app/controllers/accountCtrl.js"></script>
     <script src="app/controllers/budgetCtrl.js"></script>
     <script src="app/controllers/categoryCtrl.js"></script>
+    <script src="app/controllers/calculatorCtrl.js"></script>
+    <script src="app/controllers/apiCtrl.js"></script>
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
     <script src="app/services/budgetServices.js"></script>
     <script src="app/services/accountServices.js"></script>
     <script src="app/services/categoryServices.js"></script>
 </head>
-<body ng-app="userApp" ng-controller="mainCtrl as main">
+<body ng-app="userApp" ng-controller="mainCtrl as main" ng-controller="apiCtrl">
 
     <!-- START HEADER -->
     <div id="wrapper">
@@ -41,8 +43,8 @@
             <nav id="main-nav">
                 <ul>
                     <li><a href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i>Начало</a></li>
-                    <li><a href="#"><i class="fa fa-money fa-lg" aria-hidden="true"></i>Валутен курс</a></li>
-                    <li><a href="#"><i class="fa fa-calculator fa-lg" aria-hidden="true"></i>Калкулатори</a></li>
+                    <li><a href="/currency"><i class="fa fa-money fa-lg" aria-hidden="true"></i>Валутен курс</a></li>
+                    <li><a href="/calculator"><i class="fa fa-calculator fa-lg" aria-hidden="true"></i>Калкулатори</a></li>
                     <li class="more-padding-right"><a href="#"><i class="fa fa-book fa-lg" aria-hidden="true"></i>Блог</a></li>
                     <li ng-show="!main.isLoggedIn"><a href="/login"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>Вход</a></li>
                     <li ng-show="main.isLoggedIn" ><a ng-click = "main.logout();" href="/logout"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Изход</a></li>
@@ -67,6 +69,7 @@
 
 
 <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/jquery.validate.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>
