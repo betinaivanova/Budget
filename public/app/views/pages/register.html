@@ -3,13 +3,40 @@
     <div style="position: relative">
     <img class="register-top-img" src="assets/images/1.png" />
     </div>
-    <form ng-submit = "register.regUser(regData);" id="registration-form">
-        <label>Име</label>
-        <input id="register-name" type="text" name="register-name" ng-model="register.regData.username" />
-        <label>И-мейл</label>
-        <input type="text" name="register-email" ng-model="register.regData.email" />
-        <label>Парола</label>
-        <input type="password" name="register-password" ng-model="register.regData.password" />
+    <form name="regForm" role="form" ng-submit = "register.regUser(regData, regForm.$valid);" id="registration-form" novalidate>
+        <div ng-class="{ 'has-success':(regForm.username.$valid && !regForm.username.$pristine), 'has-error':(!regForm.username.$valid && !regForm.username.$pristine) || (!regForm.username.$valid && 
+        regForm.$submitted)  }">
+            <label>Име</label>
+            <input class="form-control" id="register-name" type="text" name="username" ng-model="register.regData.username" ng-pattern="/^(([a-zA-Z]{3,20})+)+$/" ng-minlength="3" ng-maxlength="20" ng-required="true" />
+            <p class="help-block" ng-show="(!regForm.username.$pristine && regForm.username.$error.required) || (regForm.$submitted && regForm.username.$error.required)">Полето е задължително!</p>
+            <ul ng-show="(!regForm.username.$pristine && regForm.username.$error.pattern) || (!regForm.username.$pristine && regForm.username.$error.minlength) || (!regForm.username.$pristine && regForm.username.$error.maxlength) " class="help-block error-list">
+                <li>Не трябва да съдържа специални символи</li>
+                <li>Не трябва да съдържа числа</li>
+                <li>Трябва да е по-дълга от 3 символа и по-къса от 20 символа</li>
+            </ul>
+        </div>
+        <div ng-class="{ 'has-success':(regForm.email.$valid && !regForm.email.$pristine), 'has-error':(!regForm.email.$valid && !regForm.email.$pristine) || (!regForm.email.$valid && 
+        regForm.$submitted)  }">
+            <label>И-мейл</label>
+            <input class="form-control" type="text" name="email" ng-model="register.regData.email" ng-minlength="3" ng-maxlength="25" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" ng-required="true"  />
+            <p class="help-block" ng-show="(!regForm.email.$pristine && regForm.email.$error.required) || (regForm.$submitted && regForm.email.$error.required)">Полето е задължително!</p>
+            <ul ng-show="(!regForm.email.$pristine && regForm.email.$error.pattern) || (!regForm.email.$pristine && regForm.email.$error.minlength) || (!regForm.email.$pristine && regForm.email.$error.maxlength) " class="help-block error-list">
+                <li>Трябва да съдържа "@"</li>
+                <li>Не трябва да съдържа специални символи</li>
+                <li>Трябва да е по-дълъг от 3 символа и по-къс от 25 символа</li>
+            </ul>
+        </div>
+        
+        <div ng-class="{ 'has-success':(regForm.password.$valid && !regForm.password.$pristine), 'has-error':(!regForm.password.$valid && !regForm.password.$pristine) || (!regForm.password.$valid && 
+        regForm.$submitted)  }">
+            <label>Парола</label>
+            <input class="form-control" type="password" name="password" ng-model="register.regData.password" ng-minlength="6" ng-maxlength="35" ng-required="true"  />
+            <p class="help-block" ng-show="(!regForm.password.$pristine && regForm.password.$error.required) || (regForm.$submitted && regForm.password.$error.required)">Полето е задължително!</p>
+            <ul ng-show="(!regForm.password.$pristine) || (!regForm.password.$pristine && regForm.password.$error.minlength) || (!regForm.password.$pristine && regForm.password.$error.maxlength) " class="help-block error-list">
+                <!--<li>Трябва да е по-дълъга от 6 символа и по-къса от 35 символа</li>-->
+            </ul>
+        </div>
+       
         <input id="form-register" type="submit" name="register-password" value="Регистрация" />
         
         <div class="jumbotron text-center" ng-show="register.loading">
@@ -27,8 +54,7 @@
 
     </form>
 
-    
-
+    <!--<span>{{regForm }}</span>-->
 </section>
 <section id="login-section">
     <div class="login-form">

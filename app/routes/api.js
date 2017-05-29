@@ -5,8 +5,8 @@ var Category= require('../models/category');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var passportSession = require('passport-session');
-var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
 var secret = 'test';
 
 module.exports = function(router) {
@@ -34,99 +34,9 @@ module.exports = function(router) {
         }
     });
 
-    //http://localhost:8080/api/accounts
-    router.post('/accounts', function(req,res) {
-        var account = new Account();
-        // account.user_id = req.session;
-        console.log(req.session);
-        account.name = req.body.name;
-        account.currency = req.body.currency;
-        if(req.body.name == '' || req.body.name == null || req.body.currency == '' || req.body.currency == null) {
-            res.send('Уверете се, че всички полета са попълнени');
-        } else {
-            account.save(function(err) {
-                if(err) {
-                    res.send(err);
-                } else {
-                    res.send('account created');
-                }
-            })
-        }
-    });
-
-     router.post('/categories', function(req,res) {
-        var category = new Category();
-        category.name = req.body.name;
-        if(req.body.name == '' || req.body.name == null) {
-            res.send('Уверете се, че всички полета са попълнени');
-        } else {
-            category.save(function(err) {
-                if(err) {
-                    res.send(err);
-                } else {
-                    res.send('category created');
-                }
-            })
-        }
-    });
-     router.get('/accounts', function(req,res) {
-        Account.find(function(err, accounts) {
-                if(err) {
-                    res.send(err);
-                } else {
-                    res.json(accounts);
-                }
-            })
-        
-    });
-
-    router.put('/accounts/:accountId', function(req,res) {
-        var accountId = req.params.accountId;
-        Account.remove({ _id : accountId }, function(err,res) {
-            if(err) {
-                res.send(err);
-            } else {
-                // console.log(res);
-            }
-        })
-    });
-
-     router.post('/details', function(req,res) {
-        var budget = new Budget();
-    
-        budget.category =  req.body.category;
-        budget.amount =  req.body.amount;
-        budget.date =  Date.now();
-        budget.is_expense =  req.body.is_expense;
-        budget.description = req.body.description;
-    
-        if(req.body.amount == '' || req.body.amount == null || req.body.category == '' || req.body.category == null || req.body.description == '' || req.body.description == null) {
-            res.send('Уверете се, че всички полета са попълнени');
-        } else {
-            budget.save(function(err) {
-                if(err) {
-                    res.send(err);
-                } else {
-                    res.send('account created');
-                }
-            })
-        }
-    });
-
-    router.get('/details', function(req,res) {
-        Budget.find(function(err, budgets) {
-                if(err) {
-                    res.send(err);
-                } else {
-                    res.json(budgets);
-                }
-            })
-        
-    });
-
     //http://localhost:8080/api/authenticate
     //USER LOGIN ROUTE
-    router.post('/authenticate', function(req,res) {
+    router.post('/authenticate', function(req,res,next) {
         User.findOne( { email : req.body.email }).select('email username password').exec(function(err, user) {
             if(err) throw err;
 
@@ -143,7 +53,7 @@ module.exports = function(router) {
                 } else {
                     req.session.user = user;
                     var token = jwt.sign( { email : user.email }, secret, { expiresIn: '24h'});
-                    res.json( { success : true, message : 'Браво, ти успя!', token : token });
+                    res.json( { success : true, message : 'Успешно влизане в системата!', token : token });
                 }
             }
         });
@@ -171,6 +81,135 @@ module.exports = function(router) {
     router.post('/me', function(req,res) {
         res.send(req.decoded);
     });
+
+    //http://localhost:8080/api/accounts
+    router.post('/accounts', function(req,res) {
+        var account = new Account();
+        account.user_id = req.session.user._id;
+        // var sessionUser = req.session.user._id;
+        // console.log(sessionUser);
+        account.name = req.body.name;
+        account.currency = req.body.currency;
+        if(req.body.name == '' || req.body.name == null || req.body.currency == '' || req.body.currency == null) {
+            res.send('Уверете се, че всички полета са попълнени');
+        } else {
+            account.save(function(err) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.send('account created');
+                }
+            })
+        }
+    });
+
+     router.post('/categories', function(req,res) {
+        var category = new Category();
+        category.user_id = req.session.user._id;
+        category.name = req.body.name;
+        if(req.body.name == '' || req.body.name == null) {
+            res.send('Уверете се, че всички полета са попълнени');
+        } else {
+            category.save(function(err) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.send('category created');
+                }
+            })
+        }
+    });
+    router.get('/categories', function(req,res) {
+
+        var userid = req.session.user._id;
+        Category.find({ user_id : userid }, function(err, categories) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.json(categories);
+                }
+            })
+    
+    });
+
+    router.put('/categories/:categoryId', function(req,res) {
+        var categoryId = req.params.categoryId;
+        Category.remove({ _id : categoryId }, function(err,res) {
+            if(err) {
+                res.send(err);
+            } else {
+                // console.log(res);
+            }
+        })
+    });
+    router.get('/accounts', function(req,res) {
+         var userid = req.session.user._id;
+         Account.find({ user_id : userid }, function(err, accounts) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.json(accounts);
+                }
+            })
+        
+    });
+
+    router.put('/accounts/:accountId', function(req,res) {
+        var accountId = req.params.accountId;
+        Account.remove({ _id : accountId }, function(err,res) {
+            if(err) {
+                res.send(err);
+            } else {
+                // console.log(res);
+            }
+        })
+    });
+
+     router.post('/details', function(req,res) {
+        var budget = new Budget();
+        budget.user_id = req.session.user._id;
+        budget.category =  req.body.category;
+        budget.amount =  req.body.amount;
+        budget.date =  Date.now();
+        budget.is_expense =  req.body.is_expense;
+        budget.description = req.body.description;
+    
+        if(req.body.amount == '' || req.body.amount == null || req.body.category == '' || req.body.category == null || req.body.description == '' || req.body.description == null) {
+            res.send('Уверете се, че всички полета са попълнени');
+        } else {
+            budget.save(function(err) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.send('budget created');
+                }
+            })
+        }
+    });
+
+    router.get('/details', function(req,res) {
+        Budget.find(function(err, budgets) {
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.json(budgets);
+                }
+            })
+        
+    });
+
+    router.put('/details/:budgetId', function(req,res) {
+        var budgetId = req.params.budgetId;
+        Budget.remove({ _id : budgetId }, function(err,res) {
+            if(err) {
+                res.send(err);
+            } else {
+                // console.log(res);
+            }
+        })
+    });
+
+    
 
     return router;
 }

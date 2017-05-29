@@ -16,13 +16,15 @@
         </select>
       </div>
       <div class="col-xs-2">
-        <select id="select-option" class="form-control" ng-model="budget.addData.category"  >
-          <option value="0">бонуси и овъртайм</option>
+        <select id="select-option" class="form-control"  ng-model="budget.addData.category">
+          <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+          <option ng-repeat="category in customs" value="{{category.name}}">{{category.name}}</option>
+          <!--<option value="0">бонуси и овъртайм</option>
           <option value="1">интернет</option>
           <option value="2">телевизия</option>
           <option value="3">автомобилна застраховка</option>
           <option value="4">супермаркет</option>
-          <option value="5">електричество</option>
+          <option value="5">електричество</option>-->
         </select>
       </div>
       <div class="col-xs-4">
@@ -47,7 +49,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="budget in budgets" data-account-id="{{ budget._id }}">
+      <tr ng-repeat="budget in budgets" data-budget-id="{{ budget._id }}">
         <td> {{ budget.category }}</td>
         <td> {{ budget.description }} </td>
         <td> {{ budget.date | date : 'medium' }} </td>

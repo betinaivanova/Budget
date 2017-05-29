@@ -21,7 +21,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(passport.session());
 app.use(cookieParser());
-app.use(expressSession({ secret: 'kjdasbdlas83k54fs5d', resave: false, saveUninitialized: true }));
+app.use(expressSession({ secret: 'kjdasbdlas83k54fs5d', resave: false, saveUninitialized: true, cookie: { secure: false }, expires: new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)) }));
 app.use(express.static(__dirname + '/public'));
 app.use('/api',appRoutes);
 
@@ -36,6 +36,10 @@ mongoose.connect('mongodb://budget092:budget123@ds161048.mlab.com:61048/budgetdb
 
 app.get('*', function(req,res) {
     res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 })
 
 app.listen(port, function() {

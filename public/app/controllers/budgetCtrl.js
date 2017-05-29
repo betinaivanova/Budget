@@ -3,9 +3,23 @@
 angular.module('budgetControllers', [])
 
 .controller('budgetCtrl', function($http, $scope) {
+        $scope.customs = [
+            {name : 'bet'},
+            {name : 'bet'},
+            {name : 'bet'},
+            {name : 'bet'},
+            {name : 'bet'},
+            {name : 'bet'},
+            {name : 'bet'},
+            {name : 'bet'}
+        ];
+    $http.get('/api/categories').then(function (res){
+        $scope.categories = res.data;
+        console.log($scope.categories);
+    })
     $http.get('/api/details').then(function (res){
-            $scope.accounts = res.data;
-        })
+            $scope.budgets = res.data;
+    })
     var app = this;
     app.createBudget = function(addData) {
         $http.post('/api/details', this.addData).then(function(res) {
@@ -29,8 +43,8 @@ angular.module('budgetControllers', [])
 	    		}
 	    	}
 
-	    	var pieData = [{value: totalExpense,color:"#f2dede"},
-		        		{value : totalIncome,color : "#dff0d8"}];
+	    	var pieData = [{value: totalExpense,color:"#dff0d8"}, 
+		        		{value : totalIncome,color : "#f2dede"}];
 
 
 	      	//Display the data
@@ -38,8 +52,8 @@ angular.module('budgetControllers', [])
 	    };
 
     $scope.deleteBudget = function($event) {
-            var budgettId = $($event.currentTarget).parent().parent().attr('data-account-id');
-            $http.put('/api/details/' + budgettId);
+            var budgetId = $($event.currentTarget).parent().parent().attr('data-budget-id');
+            $http.put('/api/details/' + budgetId);
             $($event.currentTarget).parent().parent().remove();
         }
 })

@@ -9,12 +9,12 @@ module.exports = function(app, passport) {
 
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(session({
-        secret: 'keyboard cat',
-        resave: false,
-        saveUninitialized: true,
-        cookie: { secure: false }
-    }))
+    // app.use(session({
+    //     secret: 'keyboard cat',
+    //     resave: false,
+    //     saveUninitialized: true,
+    //     cookie: { secure: false }
+    // }))
 
     passport.serializeUser(function(user, done) {
         token = jwt.sign( { email : user.email }, secret, { expiresIn: '24h'});

@@ -4,9 +4,9 @@ angular.module('categoryServices',[])
     var categoryFactory = {};
 
 
-
-    categoryFactory.create = function(addData) {
-        return $http.post('api/categories', addData);
+    categoryFactory.create = function(addCategoryData) {
+        return $http.post('api/categories', addCategoryData);
     }
+
     return categoryFactory;
 });

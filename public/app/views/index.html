@@ -23,6 +23,7 @@
     <script src="app/controllers/categoryCtrl.js"></script>
     <script src="app/controllers/calculatorCtrl.js"></script>
     <script src="app/controllers/apiCtrl.js"></script>
+    <script src="app/services/apiServices.js"></script>
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
     <script src="app/services/budgetServices.js"></script>
@@ -47,7 +48,6 @@
                     <li><a href="/calculator"><i class="fa fa-calculator fa-lg" aria-hidden="true"></i>Калкулатори</a></li>
                     <li class="more-padding-right"><a href="#"><i class="fa fa-book fa-lg" aria-hidden="true"></i>Блог</a></li>
                     <li ng-show="!main.isLoggedIn"><a href="/login"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>Вход</a></li>
-                    <li ng-show="main.isLoggedIn" ><a ng-click = "main.logout();" href="/logout"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Изход</a></li>
                     <li ng-show="!main.isLoggedIn"><a href="/register"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>Регистрация</a></li>
                     <li class="dropdown" ng-show="main.isLoggedIn"><a href="#"><i class="fa fa-smile-o" aria-hidden="true"></i></i>Здравей, {{ main.email }} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-content">
@@ -55,6 +55,7 @@
                             <li><a href="/category">Категории</a></li>
                         </ul>
                     </li>
+                    <li ng-show="main.isLoggedIn" ><a ng-click = "main.logout();" href="/logout"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>Изход</a></li>
                 </ul>
             </nav>
         </header>

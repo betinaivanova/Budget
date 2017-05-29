@@ -1,33 +1,39 @@
 
-<form id="calculator-form" class="form-horizontal" ng-app="">
+<form name="calcForm" id="calculator-form" class="form-horizontal" ng-app="" novalidate>
 <fieldset>
 
 <!-- Form Name -->
 <legend id="calculator-title">Каква максимална лихва мога да си позволя да плащам</legend>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group" ng-class="{ 'has-success':(calcForm.income.$valid && !calcForm.income.$pristine), 'has-error':(!calcForm.income.$valid && !calcForm.income.$pristine) || (!calcForm.income.$valid && 
+        calcForm.$submitted) || calcForm.income.$error.pattern  }">
   <label class="col-md-4 control-label" for="income">Нетен месечен доход (BGN)</label>  
   <div class="col-md-4">
-  <input ng-model="income" id="income" name="income" type="text" placeholder="0" class="form-control input-md" required="">
-    
+    <input ng-model="income" id="income" name="income" type="text" placeholder="0" class="form-control input-md" ng-pattern="/^[1-9]/" ng-required="true">
+    <p class="help-block" ng-show="(!calcForm.income.$pristine && calcForm.income.$error.required) || (calcForm.$submitted && calcForm.income.$error.required)">Полето е задължително!</p>
+      
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group" ng-class="{ 'has-success':(calcForm.monthly.$valid && !calcForm.monthly.$pristine), 'has-error':(!calcForm.monthly.$valid && !calcForm.monthly.$pristine) || (!calcForm.monthly.$valid && 
+        calcForm.$submitted) || calcForm.monthly.$error.pattern  }">
   <label class="col-md-4 control-label" for="monthly">Дължими месечни плащания (BGN)</label>  
   <div class="col-md-4">
-  <input ng-model="monthly" id="monthly-payments" name="monthly" type="text" placeholder="0" class="form-control input-md" required="">
-    
+    <input ng-model="monthly" id="monthly-payments" name="monthly" type="text" placeholder="0" class="form-control input-md" ng-pattern="/^[0-9]/" ng-required="true">
+    <!--<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>-->
+    <p class="help-block" ng-show="(!calcForm.monthly.$pristine && calcForm.monthly.$error.required) || (calcForm.$submitted && calcForm.monthly.$error.required)">Полето е задължително!</p>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group" ng-class="{ 'has-success':(calcForm.payments.$valid && !calcForm.payments.$pristine), 'has-error':(!calcForm.payments.$valid && !calcForm.payments.$pristine) || (!calcForm.payments.$valid && 
+        calcForm.$submitted) || calcForm.payments.$error.pattern  }">
   <label class="col-md-4 control-label" for="payments">Други дължими плащания (BGN)</label>  
   <div class="col-md-4">
-  <input ng-model="payments" id="payments" name="payments" type="text" placeholder="0" class="form-control input-md" required="">
+  <input ng-model="payments" id="payments" name="payments" type="text" placeholder="0" class="form-control input-md" ng-pattern="/^[0-9]/" ng-required="true">
+  <p class="help-block" ng-show="(!calcForm.payments.$pristine && calcForm.payments.$error.required) || (calcForm.$submitted && calcForm.payments.$error.required)">Полето е задължително!</p>
     
   </div>
 </div>
@@ -43,10 +49,12 @@
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group" ng-class="{ 'has-success':(calcForm.price.$valid && !calcForm.price.$pristine), 'has-error':(!calcForm.price.$valid && !calcForm.price.$pristine) || (!calcForm.price.$valid && 
+        calcForm.$submitted) || calcForm.price.$error.pattern  }">
   <label class="col-md-4 control-label" for="price">Цена на имота (BGN)</label>  
   <div class="col-md-4">
-  <input ng-model="price" id="price" name="price" type="text" placeholder="0" class="form-control input-md" required="">
+  <input ng-model="price" id="price" name="price" type="text" placeholder="0" class="form-control input-md" ng-pattern="/^[1-9]/" ng-required="true">
+  <p class="help-block" ng-show="(!calcForm.price.$pristine && calcForm.price.$error.required) || (calcForm.$submitted && calcForm.price.$error.required)">Полето е задължително!</p>
     
   </div>
 </div>
@@ -55,16 +63,20 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="period">Срок на кредита (в години)</label>  
   <div class="col-md-4">
-  <input ng-model="period" id="period" name="period" type="text" placeholder="0" class="form-control input-md" required="">
-    
+    <select ng-model="credit.years" ng-options="obj.value as obj.label for obj in credit.yearsArr" id="credit-years" name="credit-years" class="form-control">
+
+    </select>
+      
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group" ng-class="{ 'has-success':(calcForm.amount.$valid && !calcForm.amount.$pristine), 'has-error':(!calcForm.amount.$valid && !calcForm.amount.$pristine) || (!calcForm.amount.$valid && 
+        calcForm.$submitted) || calcForm.amount.$error.pattern  }">
   <label class="col-md-4 control-label" for="amount">Размер на самоучастието (BGN)</label>  
   <div class="col-md-4">
-  <input ng-model="amount" id="amount" name="amount" type="text" placeholder="0" class="form-control input-md" required="">
+    <input ng-model="amount" id="amount" name="amount" type="text" placeholder="0" class="form-control input-md" ng-pattern="/^[1-9]/" ng-required="true">
+    <p class="help-block" ng-show="(!calcForm.amount.$pristine && calcForm.amount.$error.required) || (calcForm.$submitted && calcForm.amount.$error.required)">Полето е задължително!</p>
     
   </div>
 </div>
@@ -73,7 +85,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
-    <button ng-click = "calculate()" id="submit" name="submit" class="btn all-btn">Изчислете</button>
+    <button ng-disabled="calcForm.$invalid" ng-click = "calculate()" id="submit" name="submit" class="btn all-btn">Изчислете</button>
   </div>
 </div>
 

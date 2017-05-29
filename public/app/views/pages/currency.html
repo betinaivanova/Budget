@@ -2,7 +2,7 @@
 	<div class="row">
     <h2 class="text-center">Валутни курсове</h2>
 		<div class="table-responsive">          
-  <table  class="table table-bordered table-hover">
+  <table ng-controller="categoryCtrl"  class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>ID</th>
@@ -17,9 +17,9 @@
         <th>GBP Продава</th>
       </tr>
     </thead>
-    <tbody ng-controller="apiCtrl" >
-      <tr ng-repeat"(key, value) in currencies">
-        <td>{{key}}</td>
+    <tbody>
+      <tr ng-repeat"curr in currencies">
+        <td>{{ curr.id }}</td>
         <!--<td>Anna</td>
         <td>Pitt</td>
         <td>35</td>
