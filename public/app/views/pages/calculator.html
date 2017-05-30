@@ -22,9 +22,9 @@
   <label class="col-md-4 control-label" for="monthly">Дължими месечни плащания (BGN)</label>  
   <div class="col-md-4">
     <input ng-model="monthly" id="monthly-payments" name="monthly" type="text" placeholder="0" class="form-control input-md" ng-pattern="/^[0-9]/" ng-required="true">
-    <!--<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>-->
     <p class="help-block" ng-show="(!calcForm.monthly.$pristine && calcForm.monthly.$error.required) || (calcForm.$submitted && calcForm.monthly.$error.required)">Полето е задължително!</p>
   </div>
+  <!--<i class="fa fa-info-circle fa-lg info-icon" aria-hidden="true"></i>-->
 </div>
 
 <!-- Text input-->
@@ -93,6 +93,6 @@
 </form>
 <p class="hideByDefault">{{myvalue}}</p>
 <!--<p ng-show="myvalue" class="ng-cloak">Размер на кредита (BGN): {{sum}}</p>-->
-<p ng-show="myvalue" class="ng-cloak">Приблизителна месечна вноска (BGN): {{amountCredit}}</p>
+<p class="calculator-result" ng-show="myvalue" class="ng-cloak">Приблизителна месечна вноска (BGN): {{amountCredit}}</p>
 
 

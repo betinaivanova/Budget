@@ -1,37 +1,33 @@
 <div class="container">
-	<div class="row">
-    <h2 class="text-center">Валутни курсове</h2>
-		<div class="table-responsive">          
-  <table ng-controller="categoryCtrl"  class="table table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Банки / Обменни бюра</th>
-        <th>USD Купува</th>
-        <th>USD Продава</th>
-        <th>EUR Купува</th>
-        <th>EUR Продава</th>
-        <th>CHF Купува</th>
-        <th>CHF Продава</th>
-        <th>GBP Купува</th>
-        <th>GBP Продава</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat"curr in currencies">
-        <td>{{ curr.id }}</td>
-        <!--<td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>-->
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="custom-table">
+      <div class="table-content ">
+        <div class="table-row header">
+          <div>ID</div>
+          <div class="name-column">Банки / Обменни бюра</div>
+          <div>USD Купува</div>
+          <div>USD Продава</div>
+          <div>EUR Купува</div>
+          <div>EUR Продава</div>
+          <div>CHF Купува</div>
+          <div>CHF Продава</div>
+          <div>GBP Купува</div>
+          <div>GBP Продава</div>
+        </div>
+        <div ng-repeat="curr in currencies" class="table-row">
+          <div>{{ curr.id }} </div>
+          <div class="name-column">{{ curr.name }} </div>
+          <div>{{ curr.setCurrency[0].rateBuy }} </div>
+          <div>{{ curr.setCurrency[0].rateSell }} </div>
+          <div>{{ curr.setCurrency[1].rateBuy }} </div>
+          <div>{{ curr.setCurrency[1].rateSell }} </div>
+          <div>{{ curr.setCurrency[2].rateBuy }} </div>
+          <div>{{ curr.setCurrency[2].rateSell }} </div>
+          <div>{{ curr.setCurrency[3].rateBuy }} </div>
+          <div>{{ curr.setCurrency[3].rateSell }} </div>
+        </div>
+      </div>
+    </div>
   </div>
-	</div>
 </div>
+

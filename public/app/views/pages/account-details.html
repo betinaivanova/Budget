@@ -4,10 +4,12 @@
 
   <p class="lead">Текущ баланс: </p>
  
-  <form ng-submit="budget.createBudget(addData);"  name="addRecordForm">
-    <div class="row">
+  <form name="budgetForm" ng-submit="budget.createBudget(addData);"  name="addRecordForm" novalidate>
+    <div class="row" ng-class="{ 'has-success':(budgetForm.budgetAmount.$valid && !budgetForm.budgetAmount.$pristine), 'has-error':(!budgetForm.budgetAmount.$valid && !budgetForm.budgetAmount.$pristine) || (!budgetForm.budgetAmount.$valid && 
+        budgetForm.$submitted) || budgetForm.budgetAmount.$error.pattern  }">
       <div class="col-xs-2">
-        <input type="text" class="form-control" placeholder="Сума" ng-model="budget.addData.amount"  required/>
+        <input name="budgetAmount" type="text" class="form-control" placeholder="Сума" ng-model="budget.addData.amount"  ng-pattern="/^[1-9]/" ng-required="true"/>
+        <p class="help-block" ng-show="(!budgetForm.budgetAmount.$pristine && budgetForm.budgetAmount.$error.required) || (budgetForm.$submitted && budgetForm.budgetAmount.$error.required)">Полето е задължително!</p>
       </div>
       <div class="col-xs-2">
         <select class="form-control" ng-model="budget.addData.is_expense" >
@@ -19,12 +21,6 @@
         <select id="select-option" class="form-control"  ng-model="budget.addData.category">
           <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
           <option ng-repeat="category in customs" value="{{category.name}}">{{category.name}}</option>
-          <!--<option value="0">бонуси и овъртайм</option>
-          <option value="1">интернет</option>
-          <option value="2">телевизия</option>
-          <option value="3">автомобилна застраховка</option>
-          <option value="4">супермаркет</option>
-          <option value="5">електричество</option>-->
         </select>
       </div>
       <div class="col-xs-4">
@@ -36,7 +32,7 @@
     </div>
   </form>
   
-  <h1>История на бюджетите</h1>
+  <h1 class="headings">История на бюджетите</h1>
 
   <table class="table table-condensed table-hover">
     <thead>

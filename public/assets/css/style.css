@@ -112,7 +112,7 @@ a:hover {
 }
 
 #main-nav > ul > li {
-	padding: 10px;
+	padding: 20px;
 	display: inline-block;
 }
 
@@ -395,6 +395,90 @@ a:hover {
 	font-size: 2em;
 }
 
+.info-icon {
+	padding-top: 10px;
+}
 
-/*** END CALCULATOR.HTML
+.calculator-result {
+	font-size: 1.3em;
+	font-weight: bold;
+}
 
+.headings {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+/*** END CALCULATOR.HTML ***/
+
+
+.custom-table{
+  font-family: Open Sans;
+  text-align: center;
+  width: 100%;
+  min-width: 1024px;
+  display: inline-block;
+}
+ .custom-table > div.table-header > div ,.table-row > div{
+    display: inline;
+    width: 9.8%;
+    float: left;
+ }
+  .custom-table > div.table-header > div {
+    display: inline;
+    width: 9.8%;
+    float: left;
+ }
+   .custom-table > div.table-header > div:first-child {
+	   width: 5%;
+ }
+.custom-table > div.table-header > div ,.table-row > div:first-child{
+      width: 5%;
+    }
+    .custom-table > div.table-header > div ,.table-row > div:last-child{
+      border: none;
+    
+  }
+  .name-column{
+    width: 15% !important;
+  }
+  .table-content{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+  }
+  
+  .header{
+  background: #2B3245;
+  border-bottom: 3px solid #EE6223;
+  color: #fff;
+  }
+.table-header > div{
+    border-right: 1px solid #fff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 8px 0;
+  }
+
+.table-row{
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  line-height: 2.3;
+}
+ .table-row:after {
+   visibility: hidden;
+   display: block;
+   font-size: 0;
+   content: " ";
+   clear: both;
+   height: 0;
+   }
+
+
+  

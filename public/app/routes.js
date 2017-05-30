@@ -50,7 +50,6 @@ angular.module('appRoutes', ['ngRoute'])
     .when('/currency', {
         templateUrl : 'app/views/pages/currency.html',
         controller: 'apiCtrl',
-      
     })
 
     .when('/facebook/:token', {

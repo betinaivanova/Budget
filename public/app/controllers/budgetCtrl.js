@@ -4,14 +4,17 @@ angular.module('budgetControllers', [])
 
 .controller('budgetCtrl', function($http, $scope) {
         $scope.customs = [
-            {name : 'bet'},
-            {name : 'bet'},
-            {name : 'bet'},
-            {name : 'bet'},
-            {name : 'bet'},
-            {name : 'bet'},
-            {name : 'bet'},
-            {name : 'bet'}
+            {name : 'заплата след данъчно облагане'},
+            {name : 'бонуси и овъртайм'},
+            {name : 'ипотека и наем'},
+            {name : 'автомобилна застраховка'},
+            {name : 'мобилен телефон'},
+            {name : 'телевизия'},
+            {name : 'интернет'},
+            {name : 'супермаркет'},
+            {name : 'спорт и фитнес'},
+            {name : 'ресторанти'},
+            {name : 'цигари'}
         ];
     $http.get('/api/categories').then(function (res){
         $scope.categories = res.data;

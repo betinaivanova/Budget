@@ -6,8 +6,8 @@
         <input type="text" name="login-email" ng-model="main.loginData.email" />
         <label>Парола</label>
         <input type="password" name="login-password" ng-model="main.loginData.password" />
-        <input class="remember-checkbox" id="remember-checkbox" type="checkbox" name="remember" />
-        <span class="remember-me">Запомни ме</span>
+        <!--<input class="remember-checkbox" id="remember-checkbox" type="checkbox" name="remember" />
+        <span class="remember-me">Запомни ме</span>-->
         <input id="form-login" type="submit" name="register-password" value="Вход" />
 
          <div class="jumbotron text-center" ng-show="main.loading">
@@ -32,6 +32,6 @@
         <div class="row show-hide-message" ng-show="facebook.errorMsg">
             <div class="alert alert-danger"> {{ facebook.errorMsg }} </div>
         </div>
-        <a id="google-login" href="#"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Google</a>
+        <!--<a id="google-login" href="#"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Google</a>-->
     </div>
 </section>

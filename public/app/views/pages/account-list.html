@@ -1,10 +1,12 @@
 <div class="container">
 
 	<h1>Бюджети</h1>
-	<form ng-submit="account.addAccount(addData);" name="addAccountForm">
-	    <div class="row">
+	<form name="accForm" ng-submit="account.addAccount(addData);" name="addAccountForm" novalidate>
+	    <div  ng-class="{ 'has-success':(accForm.budgetName.$valid && !accForm.budgetName.$pristine), 'has-error':(!accForm.budgetName.$valid && !accForm.budgetName.$pristine) || (!accForm.budgetName.$valid && 
+        accForm.$submitted)  }" class="row">
 	      <div class="col-xs-3">
-	        <input type="text" class="form-control" placeholder="Име на бюджет" ng-model="account.addData.name" required/>
+	        <input name="budgetName" type="text" class="form-control" placeholder="Име на бюджет" ng-model="account.addData.name" ng-pattern="/^(([a-zA-Z]{3,20})+)+$/" ng-minlength="3" ng-maxlength="20" ng-required="true"/>
+					<p class="help-block" ng-show="(!accForm.budgetName.$pristine && accForm.budgetName.$error.required) || (accForm.$submitted && accForm.budgetName.$error.required)">Полето е задължително!</p>
 	      </div>
 	      <div class="col-xs-2">
 	        <select class="form-control" ng-model="account.addData.currency" required>

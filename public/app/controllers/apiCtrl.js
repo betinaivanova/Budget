@@ -5,7 +5,4 @@ angular.module('apiCallControllers', [])
             $scope.currencies = res.data;
             console.log($scope.currencies);
         });
-
-    
-    
 });
